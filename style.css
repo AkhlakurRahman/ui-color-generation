@@ -1,0 +1,121 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  color: rgb(51, 51, 51);
+}
+
+button {
+  font-family: 'Roboto', sans-serif;
+}
+
+path,
+i,
+svg {
+  pointer-events: none;
+}
+
+.colors {
+  display: flex;
+  height: 80vh;
+  color: rgb(212, 212, 212);
+}
+
+.color {
+  display: flex;
+  height: 80vh;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  position: relative;
+  overflow: hidden;
+}
+
+.color h2 {
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.controls {
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.adjust,
+.lock {
+  font-size: 2rem;
+  border: none;
+  cursor: pointer;
+  background: none;
+  margin: 2rem 0;
+}
+
+.sliders {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  bottom: 0;
+  background: rgb(255, 255, 255);
+  padding: 1rem;
+  width: 80%;
+  pointer-events: none;
+  border-radius: 2px;
+  opacity: 0;
+  transform: translateY(100px);
+  transition: all 0.4s ease-in-out;
+}
+
+.sliders button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.2rem 0.4rem;
+  border: none;
+  border-top-right-radius: 2px;
+  background-color: rgb(31, 33, 63);
+  color: #fff;
+  cursor: pointer;
+}
+
+.sliders.active {
+  transform: translateY(0);
+  pointer-events: all;
+  opacity: 1;
+}
+
+.panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 20vh;
+}
+
+.panel-library,
+.panel-generate,
+.panel-save {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.panel button {
+  font-size: 1.2rem;
+  margin: 1rem;
+  padding: 1rem 2rem;
+  border: none;
+  background-color: rgb(31, 33, 63);
+  color: #fff;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.panel p {
+  font-size: 1.2rem;
+}
