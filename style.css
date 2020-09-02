@@ -64,10 +64,11 @@ svg {
   background: rgb(255, 255, 255);
   padding: 1rem;
   width: 80%;
-  pointer-events: none;
-  border-radius: 2px;
-  opacity: 0;
-  transform: translateY(100px);
+  /* pointer-events: none; */
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  /* opacity: 0; */
+  /* transform: translateY(100px); */
   transition: all 0.4s ease-in-out;
 }
 
@@ -118,4 +119,13 @@ svg {
 
 .panel p {
   font-size: 1.2rem;
+}
+
+input[type='range'] {
+  -webkit-appearance: none;
+  margin: 1rem 0;
+  width: 100%;
+  position: relative;
+  cursor: pointer;
+  border-radius: 1rem;
 }
