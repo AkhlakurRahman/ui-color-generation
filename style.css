@@ -11,6 +11,10 @@ body {
 
 button {
   font-family: 'Roboto', sans-serif;
+  border: none;
+  background-color: rgb(31, 33, 63);
+  color: #fff;
+  cursor: pointer;
 }
 
 path,
@@ -72,16 +76,13 @@ svg {
   transition: all 0.4s ease-in-out;
 }
 
-.sliders button {
+.sliders button,
+.close-save {
   position: absolute;
   top: 0;
   right: 0;
   padding: 0.2rem 0.4rem;
-  border: none;
   border-bottom-left-radius: 2px;
-  background-color: rgb(31, 33, 63);
-  color: #fff;
-  cursor: pointer;
 }
 
 .sliders.active {
@@ -130,7 +131,9 @@ input[type='range'] {
   border-radius: 1rem;
 }
 
-.copy-container {
+.copy-container,
+.save-container,
+.library-container {
   position: fixed;
   top: 0;
   left: 0;
@@ -145,18 +148,21 @@ input[type='range'] {
   pointer-events: none;
 }
 
-.copy-container.active {
+.copy-container.active,
+.save-container.active,
+.library-container.active {
   opacity: 1;
   pointer-events: all;
 }
 
-.copy-popup {
+.copy-popup,
+.save-popup,
+.library-popup {
   background: #fff;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  /* padding: 2rem 4rem; */
   min-width: 30%;
   min-height: 30vh;
   border-radius: 5px;
@@ -164,11 +170,29 @@ input[type='range'] {
   transform: translateY(-2rem);
 }
 
-.copy-popup.active {
+.copy-popup.active,
+.save-popup.active,
+.library-popup.active {
   transform: translateY(0);
 }
 
-.copy-popup h3 {
+.copy-popup h4,
+.save-popup h4,
+.library-popup h4 {
   font-size: 1.8rem;
   padding: 2rem;
+}
+
+.copy-popup input,
+.save-popup input,
+.library-popup input {
+  padding: 1rem 2rem;
+}
+
+.submit-save {
+  padding: 0.5rem 2rem;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 3px;
 }

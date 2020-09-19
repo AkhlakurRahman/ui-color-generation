@@ -4,9 +4,15 @@ const sliders = document.querySelectorAll('input[type="range"]');
 const currentHexes = document.querySelectorAll('.color h2');
 const popupContainer = document.querySelector('.copy-container');
 const adjustButtons = document.querySelectorAll('.adjust');
+const lockButtons = document.querySelectorAll('.lock');
 const closeAdjustments = document.querySelectorAll('.close-adjustment');
 const sliderContainers = document.querySelectorAll('.sliders');
 let initialColors;
+
+// Local storage part
+let savedPalettes = [];
+
+generateButton.addEventListener('click', randomColors);
 
 // Event listener for slider controls
 sliders.forEach((slider) => {
@@ -49,14 +55,25 @@ closeAdjustments.forEach((button, index) => {
   });
 });
 
+lockButtons.forEach((button, index) => {
+  button.addEventListener('click', (e) => {
+    lockAColor(e, index);
+  });
+});
+
 function randomColors() {
   initialColors = [];
   colorDivs.forEach((div, index) => {
     const hexText = div.children[0];
     const randomColor = generateHex();
 
-    // Pushing the color to the array
-    initialColors.push(chroma(randomColor).hex());
+    if (div.classList.contains('locked')) {
+      initialColors.push(hexText.innerText);
+      return;
+    } else {
+      // Pushing the color to the array
+      initialColors.push(chroma(randomColor).hex());
+    }
 
     div.style.background = randomColor;
     hexText.innerText = randomColor;
@@ -72,8 +89,15 @@ function randomColors() {
 
     colorizeSliders(color, hue, brightness, saturation);
   });
+
   // Reset all the control sliders
   resetControlSliders();
+
+  // Check for button contrast
+  adjustButtons.forEach((button, index) => {
+    checkTextContrast(initialColors[index], button);
+    checkTextContrast(initialColors[index], lockButtons[index]);
+  });
 }
 
 function colorizeSliders(color, hue, brightness, saturation) {
@@ -189,6 +213,43 @@ function openAdjustmentPanel(index) {
 
 function closeAdjustmentPanel(index) {
   sliderContainers[index].classList.remove('active');
+}
+
+function lockAColor(e, index) {
+  const lockSVG = e.target.children[0];
+  const activeBg = colorDivs[index];
+  activeBg.classList.toggle('locked');
+
+  if (lockSVG.classList.contains('fa-lock-open')) {
+    e.target.innerHTML = '<i class="fas fa-lock"></i>';
+  } else {
+    e.target.innerHTML = '<i class="fas fa-lock-open"></i>';
+  }
+}
+
+// Implement save to palette and Local storage
+const saveButton = document.querySelector('.save');
+const submitSave = document.querySelector('.submit-save');
+const closeSave = document.querySelector('.close-save');
+const saveContainer = document.querySelector('.save-container');
+const saveInput = document.querySelector('.save-container input');
+
+saveButton.addEventListener('click', openSavePalette);
+
+closeSave.addEventListener('click', closeSavePalette);
+
+function openSavePalette(e) {
+  const popup = saveContainer.children[0];
+
+  saveContainer.classList.add('active');
+  popup.classList.add('active');
+}
+
+function closeSavePalette(e) {
+  const popup = saveContainer.children[0];
+
+  saveContainer.classList.remove('active');
+  popup.classList.remove('active');
 }
 
 randomColors();
