@@ -199,11 +199,11 @@ input[type='range'] {
 }
 
 .library-popup {
-  min-width: 40%;
+  min-width: 50%;
   padding: 1rem;
   justify-content: flex-start;
   overflow-y: scroll;
-  min-height: 50vh;
+  max-height: 50vh;
 }
 
 .custom-palette {
